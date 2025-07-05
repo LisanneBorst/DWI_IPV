@@ -1,0 +1,35 @@
+#!/bin/bash
+
+# Directorio base
+base_dir="/data/lisanne/bids"
+output_dir="$base_dir/TBSS/FA/AD" # Carpeta de destino existente
+
+# IPV: Mujeres supervivientes
+for i in "sub-1" "sub-2"; #sujetos IPV
+do 
+  src="$base_dir/$i/ses-01/dwi/DTI_1000PA_AD.nii.gz"
+  dest="$output_dir/IPV_${i}_DTI_1000PA_FA.nii.gz"
+  
+  # Copiar el archivo
+  if [ -f "$src" ]; then
+    cp "$src" "$dest"
+    echo "Copied $src to $dest"
+  else
+    echo "File not found: $src"
+  fi
+done
+
+# CON: Mujeres control
+for i in "sub-3" "sub-4"; #controles
+do 
+  src="$base_dir/$i/ses-01/dwi/DTI_1000PA_AD.nii.gz"
+  dest="$output_dir/CON_${i}_DTI_1000PA_FA.nii.gz"
+
+  # Copiar el archivo
+  if [ -f "$src" ]; then
+    cp "$src" "$dest"
+    echo "Copied $src to $dest"
+  else
+    echo "File not found: $src"
+  fi
+done
